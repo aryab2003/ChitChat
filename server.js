@@ -16,10 +16,17 @@ app.get("/", (req, res) => {
 
 // Socket
 const io = require("socket.io")(http);
-
+let connectionCount = 0;
 io.on("connection", (socket) => {
-  console.log("Connected...");
+  connectionCount++;
+  io.emit("connectionCount", connectionCount);
+  console.log("Connected. Total connections:", connectionCount);
   socket.on("message", (msg) => {
     socket.broadcast.emit("message", msg);
+  });
+  socket.on("disconnect", () => {
+    connectionCount--;
+    io.emit("connectionCount", connectionCount);
+    console.log("A user disconnected. Total connections:", connectionCount);
   });
 });

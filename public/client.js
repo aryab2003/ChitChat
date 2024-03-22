@@ -6,24 +6,29 @@ do {
   name = prompt("Please enter your name: ");
 } while (!name);
 
-textarea.addEventListener("keyup", (e) => {
-  if (e.key === "Enter") {
-    sendMessage(e.target.value);
-  }
+const sendButton = document.getElementById("send-btn");
+const messageTextarea = document.getElementById("textarea");
+
+sendButton.addEventListener("click", () => {
+  sendMessage(messageTextarea.value);
 });
 
+messageTextarea.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    sendMessage(messageTextarea.value);
+  }
+});
 function sendMessage(message) {
   let msg = {
     user: name,
     message: message.trim(),
     time: new Date().toLocaleTimeString(),
   };
-  // Append
+
   appendMessage(msg, "outgoing");
   textarea.value = "";
   scrollToBottom();
 
-  // Send to server
   socket.emit("message", msg);
 }
 
@@ -41,10 +46,13 @@ function appendMessage(msg, type) {
   messageArea.appendChild(mainDiv);
 }
 
-// Recieve messages
 socket.on("message", (msg) => {
   appendMessage(msg, "incoming");
   scrollToBottom();
+});
+
+socket.on("connectionCount", (count) => {
+  document.getElementById("connection-count").innerText = count;
 });
 
 function scrollToBottom() {

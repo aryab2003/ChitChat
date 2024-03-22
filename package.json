@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "build": "npm run lint && npm run prettier && npm run build-client && npm run build-server",
+    "lint": "eslint . --ext .js,.jsx",
+    "prettier": "prettier --write .",
+    "build-client": "webpack --config webpack.client.js",
+    "build-server": "webpack --config webpack.server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

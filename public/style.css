@@ -1,7 +1,7 @@
 .time {
-  font-size: 12px; /* Adjust font size as needed */
-  color: #151414; /* Adjust color to match your design */
-  margin-top: 4px; /* Add spacing between message content and time */
+  font-size: 12px;
+  color: #151414;
+  margin-top: 4px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -30,7 +30,7 @@ section.chat__section {
   padding: 20px;
   background: #f1f1f1;
   display: flex;
-  align-items: center;
+  flex-direction: row;
 }
 .brand h1 {
   text-transform: uppercase;
@@ -77,4 +77,86 @@ textarea {
   left: 0;
   color: #333;
   font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+  .brand {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vc {
+    position: static;
+    margin-top: 20px;
+    right: auto;
+    background: #4caf50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+  }
+}
+
+.vc {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.vc a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  flex: 1;
+  border: none;
+  padding: 20px;
+  font-size: 16px;
+  outline: none;
+  background: #fbfbfb;
+  border-radius: 4px;
+}
+
+button#send-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+button#send-btn:hover {
+  background-color: #0056b3;
+}
+
+.user-count {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-count p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.user-count span {
+  font-weight: bold;
+  font-size: 20px;
+  color: #007bff;
 }
